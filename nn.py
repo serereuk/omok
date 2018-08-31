@@ -13,7 +13,7 @@ class nn():
         self.sess.run(tf.global_variables_initializer())
 
     def train(self, examples):
-        for epoch in range(100):
+        for epoch in range(5):
             print("epoch" + str(epoch + 1), "batch", len(examples))
             batch_idx = 0
             try:
