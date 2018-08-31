@@ -5,7 +5,7 @@ from mcts import mcts
 import os
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
-def main():
+def start():
     g = game(5, 3)
     nnet = nn(g)
     Mcts = mcts(g, nnet)
