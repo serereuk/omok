@@ -8,7 +8,7 @@ class coaching():
         self.nnet = nnet
         #self.pnet = self.nnet.__class__(self.game)
         self.mcts = mcts1
-        self.trainexamplehistory = []
+        self.prints = False
 
     def executeepisode(self):
         trainexample = []
@@ -26,7 +26,8 @@ class coaching():
 
             action = np.random.choice(len(pi), p=pi)
             board, self.curplayer = self.game.nextstate(board, self.curplayer, action)
-            print("episode :", episodestep, "\n", board)
+            if self.prints == True:
+                print("episode :", episodestep, "\n", board)
             r = self.game.ggeutnam(board, self.curplayer)
 
             if r != 0:
@@ -34,13 +35,15 @@ class coaching():
 
     def learn(self):
 
-        for iter in range(2):
+        for iter in range(100):
             iterationtrainexample = []
             finalexample = []
-
+            self.prints = False
             try:
-                for i in range(2):
+                for i in range(10):
                     print("game:", i)
+                    if i == 9:
+                        self.prints = True
                     iterationtrainexample += self.executeepisode()
                 for e in iterationtrainexample:
                     finalexample.append(e)
