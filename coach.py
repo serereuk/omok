@@ -42,8 +42,8 @@ class coaching():
             try:
                 for i in range(10):
                     print("game:", i)
-                    if i == 9:
-                        self.prints = True
+                    #if i == 9:
+                    #    self.prints = True
                     iterationtrainexample += self.executeepisode()
                 for e in iterationtrainexample:
                     finalexample.append(e)
