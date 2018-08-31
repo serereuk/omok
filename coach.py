@@ -39,24 +39,21 @@ class coaching():
             iterationtrainexample = []
             finalexample = []
 
-            for i in range(10):
-                print("game:", i)
-                iterationtrainexample += self.executeepisode()
+            try:
+                for i in range(10):
+                    print("game:", i)
+                    iterationtrainexample += self.executeepisode()
 
-            self.trainexamplehistory.append(iterationtrainexample)
+                self.trainexamplehistory.append(iterationtrainexample)
 
-            for e in self.trainexamplehistory:
-                finalexample.append(e)
+                for e in self.trainexamplehistory:
+                    finalexample.append(e)
 
-            self.nnet.train(finalexample)
-            self.mcts = mcts(self.game, self.nnet)
+                self.nnet.train(finalexample)
+                self.mcts = mcts(self.game, self.nnet)
 
-
-
-        #self.executeepisode()
-        #self.nnet.saving("~/", "model1.ckpt")
-        #self.pnet.loading("~/", "model1.ckpt")
-
+            except Exception as err:
+                print(err)
 
 
 
