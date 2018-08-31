@@ -19,7 +19,6 @@ class coaching():
         while True:
             episodestep += 1
             oneminusone = self.game.oneminusone(board, self.curplayer)
-            temp = int(episodestep < 20)
             pi = self.mcts.getactionprob(oneminusone)
             sym = self.game.symme(oneminusone, pi)
             for b, p in sym:
@@ -35,20 +34,17 @@ class coaching():
 
     def learn(self):
 
-        for iter in range(5):
+        for iter in range(2):
             iterationtrainexample = []
             finalexample = []
 
             try:
-                for i in range(10):
+                for i in range(2):
                     print("game:", i)
                     iterationtrainexample += self.executeepisode()
-
-                self.trainexamplehistory.append(iterationtrainexample)
-
-                for e in self.trainexamplehistory:
+                for e in iterationtrainexample:
                     finalexample.append(e)
-
+                print(finalexample)
                 self.nnet.train(finalexample)
                 self.mcts = mcts(self.game, self.nnet)
 
