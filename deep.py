@@ -22,11 +22,10 @@ class deep():
 
         h_conv1 = relu(batchnormalization(self.conv2d(x_image, 512, "same"), axis=3, training=self.istraining))
         h_conv2 = relu(batchnormalization(self.conv2d(h_conv1, 512, "same"), axis=3, training=self.istraining))
+        h_conv3 = relu(batchnormalization(self.conv2d(h_conv2, 512, "valid"), axis=3, training=self.istraining))
+        h_conv4 = relu(batchnormalization(self.conv2d(h_conv3, 512, "valid"), axis=3, training=self.istraining))
 
-        #h_conv3 = relu(batchnormalization(self.conv2d(h_conv2, 512, "valid"), axis=3, training=self.istraining))
-        #h_conv4 = relu(batchnormalization(self.conv2d(h_conv3, 512, "valid"), axis=3, training=self.istraining))
-
-        h_conv2_flat = tf.reshape(h_conv2, [-1, 512 * (self.board_x) * (self.board_y)])
+        h_conv2_flat = tf.reshape(h_conv4, [-1, 512 * (self.board_x) * (self.board_y)])
         s_fc1 = dropout(relu(batchnormalization(dense(h_conv2_flat, 1024), axis=1, training=self.istraining)), rate=0.5)
         s_fc2 = dropout(relu(batchnormalization(dense(s_fc1, 512), axis=1, training=self.istraining)), rate=0.5)
         self.pi = dense(s_fc2, self.actionsize)
@@ -48,5 +47,3 @@ class deep():
         with tf.control_dependencies(update_ops):
             self.train_step = tf.train.AdamOptimizer(0.001).minimize(self.total_loss)
 
-
-# gbsize = 7; win_standard = 5

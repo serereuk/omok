@@ -16,8 +16,8 @@ class nn():
         for epoch in range(100):
             print("epoch" + str(epoch + 1))
             batch_idx = 0
-            while batch_idx < int(len(examples) / 50):
-                sample_ids = np.random.randint(len(examples), size=50)
+            while batch_idx < int(len(examples) / 128):
+                sample_ids = np.random.randint(len(examples), size=128)
                 boards, pis, vs = list(zip(*[examples[i] for i in sample_ids]))
 
                 input_dict = {self.nnet.input_boards: boards, self.nnet.target_pis: pis, self.nnet.target_vs: vs,
