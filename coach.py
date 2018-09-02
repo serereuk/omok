@@ -1,5 +1,6 @@
 import numpy as np
 from mcts import mcts
+from tqdm import trange
 
 
 class coaching():
@@ -40,10 +41,10 @@ class coaching():
             finalexample = []
             self.prints = False
             try:
-                for i in range(10):
-                    print("game:", i)
-                    #if i == 9:
-                    #    self.prints = True
+                for i in trange(10):
+                    #print("game:", i)
+                    if iter % 10 == 9 and i == 9:
+                        self.prints = True
                     iterationtrainexample += self.executeepisode()
                 for e in iterationtrainexample:
                     finalexample.append(e)
@@ -53,6 +54,9 @@ class coaching():
 
             except Exception as err:
                 print(err)
+                self.nnet.saving("~/", "model_err.ckpt")
+
+        self.nnet.saving("~/", "model1.ckpt")
 
 
 
