@@ -48,7 +48,6 @@ class coaching():
                     iterationtrainexample += self.executeepisode()
                 for e in iterationtrainexample:
                     finalexample.append(e)
-                print(finalexample)
                 self.nnet.train(finalexample)
                 self.mcts = mcts(self.game, self.nnet)
 
