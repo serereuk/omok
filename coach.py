@@ -41,7 +41,7 @@ class coaching():
             finalexample = []
             self.prints = False
             try:
-                for i in trange(10):
+                for i in trange(30):
                     #print("game:", i)
                     if iter % 10 == 9 and i == 9:
                         self.prints = True
