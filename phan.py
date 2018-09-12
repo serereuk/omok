@@ -1,4 +1,5 @@
 import numpy as np
+from collections import deque
 
 def rle2(x, color):
     dots = np.where(x.T.flatten() == color)[0]
@@ -16,7 +17,11 @@ class Phan:
     def __init__(self, gbsize, win_standard):
         self.gbsize = gbsize
         self.win_standard = win_standard
-        self.board = np.zeros((self.gbsize, self.gbsize))
+        self.board = np.zeros((self.gbsize, self.gbsize), dtype=np.int32)
+        zeros = np.zeros((self.gbsize, self.gbsize), dtype = np.int32)
+        zeros1 = np.copy(zeros)
+        zeros2 = np.copy(zeros)
+        self.board3d = np.array([zeros, zeros1, zeros2])
 
     def dun_soo(self):   # 아직 비어 있는 곳을 의미
 
@@ -64,3 +69,10 @@ class Phan:
     def moving(self, move, color):
         (x, y) = move
         self.board[x, y] = color
+
+    def dim_moving(self, new_board, board):
+        temp = deque(new_board)
+        temp.popleft()
+        temp = temp.append(board)
+        self.board3d = np.array(temp)
+

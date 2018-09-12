@@ -18,15 +18,17 @@ class Omokgame():
     def actionsize(self):
         return self.gbsize * self.gbsize + 1
 
-    def nextstate(self, board, player, action):
+    def nextstate(self, board, newboard, player, action):
         if action == self.gbsize * self.gbsize:
             return board, -player
 
         b = Phan(self.gbsize, self.win_standard)
         b.board = np.copy(board)
+        b.board3d = np.copy(newboard)
         move = (int(action / self.gbsize), action % self.gbsize)
         b.moving(move, player)
-        return b.board, -player
+        b.dim_moving(newboard, board)
+        return b.board, -player, b.board3d
 
     def validmove(self, board, player):
 
@@ -62,14 +64,11 @@ class Omokgame():
 
     def symme(self, board, pi):
         assert (len(pi) == self.gbsize ** 2 + 1)
-
         pi_board = np.reshape(pi[:-1], (self.gbsize, self.gbsize))
-
         l = []
-
         for i in range(1, 5):
             for j in [True, False]:
-                newb = np.rot90(board, i)
+                newb = np.array([np.rot90(board[0], i), np.rot90(board[1], i), np.rot90(board[2], i)])
                 newpi = np.rot90(pi_board, i)
 
                 if j:
@@ -83,11 +82,7 @@ class Omokgame():
     def stringstring(self, board):
         return board.tostring()
 
-    def real_play(self, board ,action, player):
-        self.r = False
-        board, _ = self.nextstate(board, player, action)
-        if self.ggeutnam(board, player) == 1 or self.ggeutnam(board, player) == 0:
-            self.r = True
-        else:
-            self.r = False
-        return board ,self.r
+    def dim_board(self):
+        b = Phan(self.gbsize, self.win_standard)
+        return b.board3d
+
