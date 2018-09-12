@@ -14,7 +14,7 @@ class nn():
         self.sess.run(tf.global_variables_initializer())
 
     def train(self, examples):
-        print("epoch" + str(epoch + 1), "batch", len(examples))
+        print("epoch" , "batch", len(examples))
         for epoch in trange(3):
             batch_idx = 0
             try:
