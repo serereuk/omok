@@ -72,6 +72,7 @@ class mcts():
         a = best_act
         next_s, next_player, next_board = self.game.nextstate(oneminusone, new_board ,1, a)
         next_s = self.game.oneminusone(next_s, next_player)
+        next_board = self.game.oneminusone(next_board, next_player)
 
         v = self.search(next_s, next_board)
 

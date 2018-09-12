@@ -18,7 +18,7 @@ class deep():
         self.istraining = tf.placeholder(tf.bool, name="is_training")
 
 
-        x_image = tf.reshape(self.input_boards, [-1, self.board_x, self.board_y, 1])
+        x_image = tf.reshape(self.input_boards, [-1, self.board_x, self.board_y, 3])
 
         h_conv1 = relu(batchnormalization(self.conv2d(x_image, 512, "same"), axis=3, training=self.istraining))
         h_conv2 = relu(batchnormalization(self.conv2d(h_conv1, 512, "same"), axis=3, training=self.istraining))

@@ -20,7 +20,7 @@ class Omokgame():
 
     def nextstate(self, board, newboard, player, action):
         if action == self.gbsize * self.gbsize:
-            return board, -player
+            return board, -player, newboard
 
         b = Phan(self.gbsize, self.win_standard)
         b.board = np.copy(board)
