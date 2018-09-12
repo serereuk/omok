@@ -26,7 +26,7 @@ class coaching():
                 trainexample.append([b, self.curplayer, p, None])
 
             action = np.random.choice(len(pi), p=pi)
-            board, self.curplayer, new_board = self.game.nextstate(board, self.curplayer, action)
+            board, self.curplayer, new_board = self.game.nextstate(board, new_board, self.curplayer, action)
             if self.prints == True:
                 print("episode :", episodestep, "\n", board)
             r = self.game.ggeutnam(board, self.curplayer)

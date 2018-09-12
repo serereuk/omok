@@ -72,7 +72,7 @@ class Phan:
 
     def dim_moving(self, new_board, board):
         temp = deque(new_board)
-        temp.popleft()
-        temp = temp.append(board)
+        temp.remove(temp[0])
+        temp.append(board)
         self.board3d = np.array(temp)
 
