@@ -36,14 +36,16 @@ class coaching():
 
     def learn(self):
 
-        for iter in range(10):
+        for iter in range(10000):
+            print("iter : ",iter+1)
             iterationtrainexample = []
             finalexample = []
             self.prints = False
             try:
-                for i in trange(30):
+                for i in trange(50):
+                    self.prints = False
                     #print("game:", i)
-                    if iter % 10 == 9 and i == 9:
+                    if iter % 10 == 9 and i == 49:
                         self.prints = True
                     iterationtrainexample += self.executeepisode()
                 for e in iterationtrainexample:
