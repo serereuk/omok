@@ -2,6 +2,7 @@ import tensorflow as tf
 import numpy as np
 import os
 from deep2 import deep2
+from tqdm import trange
 
 class nn():
     def __init__(self, game):
@@ -13,8 +14,8 @@ class nn():
         self.sess.run(tf.global_variables_initializer())
 
     def train(self, examples):
-        for epoch in range(3):
-            print("epoch" + str(epoch + 1), "batch", len(examples))
+        print("epoch" + str(epoch + 1), "batch", len(examples))
+        for epoch in trange(3):
             batch_idx = 0
             try:
                 while batch_idx < int(len(examples) / 128):
