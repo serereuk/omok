@@ -41,8 +41,10 @@ class coaching():
             iterationtrainexample = []
             finalexample = []
             self.prints = False
+            if iter % 30:
+                self.nnet.saving("~/", "model1.ckpt")
             try:
-                for i in trange(50):
+                for i in trange(30):
                     self.prints = False
                     #print("game:", i)
                     if iter % 10 == 9 and i == 49:
