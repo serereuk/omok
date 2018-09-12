@@ -15,11 +15,11 @@ class nn():
 
     def train(self, examples):
         print("epoch" , "batch", len(examples))
-        for epoch in trange(3):
+        for epoch in trange(5):
             batch_idx = 0
             try:
-                while batch_idx < int(len(examples) / 128):
-                    sample_ids = np.random.randint(len(examples), size=128)
+                while batch_idx < int(len(examples) / 256):
+                    sample_ids = np.random.randint(len(examples), size=256)
                     boards, pis, vs = list(zip(*[examples[i] for i in sample_ids]))
 
                     input_dict = {self.nnet.input_boards: boards, self.nnet.target_pis: pis, self.nnet.target_vs: vs,
